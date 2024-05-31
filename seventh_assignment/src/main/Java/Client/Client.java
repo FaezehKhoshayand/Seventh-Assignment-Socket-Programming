@@ -13,6 +13,7 @@ public class Client {
         // TODO: Implement the main method to start the client
         final int PORT = 8888;
         Socket s = new Socket("localHost", PORT);
+        System.out.println("Connected to the Server");
         DataOutputStream out = new DataOutputStream(s.getOutputStream());
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         while (true) {
