@@ -16,6 +16,8 @@ public class Client {
         System.out.println("Connected to the Server");
         DataOutputStream out = new DataOutputStream(s.getOutputStream());
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        HandleServerResponse handleServerResponse = new HandleServerResponse(s);
+        new Thread(handleServerResponse).start();
         while (true) {
             String line = in.readLine();
             out.writeUTF(line);
