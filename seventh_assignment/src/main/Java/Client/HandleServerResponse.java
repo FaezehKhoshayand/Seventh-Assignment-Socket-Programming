@@ -1,6 +1,7 @@
 package Client;
 
 import java.io.DataInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
@@ -13,21 +14,26 @@ public class HandleServerResponse implements Runnable {
     public void run() {
         try {
             while (true) {
-                System.out.print(in.readUTF());
+                String i = in.readUTF();
+                if (i.equals("file")) {
+                    int length = 0;
+                    String path = in.readUTF();
+                    FileOutputStream os = new FileOutputStream(path);
+                    Long size = in.readLong();
+                    byte[] buffer = new byte[8192];
+                    while (size > 0 && (length = in.read(buffer, 0 , (int) Math.min(buffer.length, size))) != -1) {
+                        os.write(buffer, 0, length);
+                        size -= length;
+                    }
+                    System.out.println("Qq");
+                    os.close();
+                }
+                else {
+                    System.out.println(i);
+                }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-    public void chat() throws IOException {
-        while (true) {
-            String input = in.readUTF();
-            System.out.println(input);
-            if (input.equals("leave")) {
-                break;
-            }
-
-        }
-    }
-
 }

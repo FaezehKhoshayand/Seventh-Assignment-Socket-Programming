@@ -11,16 +11,16 @@ public class Service implements Runnable{
     private ArrayList<File> files = new ArrayList<>();;
 
     Service(Socket client) throws IOException {
-        files.add(new File("Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\all-of-me-john-legend"));
-        files.add(new File("Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\a-man-without-love-ngelbert-Hmperdinck"));
-        files.add(new File("Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\birds-imagine-dragons"));
-        files.add(new File("Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\blinding-lights-the-weekend"));
-        files.add(new File("Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\dont-matter-to-me-drake"));
-        files.add(new File("Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\feeling-in-my-body-elvis"));
-        files.add(new File("Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\out-of-time-the-weekend"));
-        files.add(new File("Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\something-in-the-way-nirvana"));
-        files.add(new File("Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\why-you-wanna-trip-on-me-michael-jackson"));
-        files.add(new File("Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\you-put-a-spell-on-me-austin-giorgio"));
+        files.add(new File("C:\\Users\\BEROOZ\\Desktop\\Socket\\Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\all-of-me-john-legend.txt"));
+        files.add(new File("C:\\Users\\BEROOZ\\Desktop\\Socket\\Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\a-man-without-love-ngelbert-Hmperdinck.txt"));
+        files.add(new File("C:\\Users\\BEROOZ\\Desktop\\Socket\\Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\birds-imagine-dragons.txt"));
+        files.add(new File("C:\\Users\\BEROOZ\\Desktop\\Socket\\Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\blinding-lights-the-weekend.txt"));
+        files.add(new File("C:\\Users\\BEROOZ\\Desktop\\Socket\\Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\dont-matter-to-me-drake.txt"));
+        files.add(new File("C:\\Users\\BEROOZ\\Desktop\\Socket\\Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\feeling-in-my-body-elvis.txt"));
+        files.add(new File("C:\\Users\\BEROOZ\\Desktop\\Socket\\Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\out-of-time-the-weekend.txt"));
+        files.add(new File("C:\\Users\\BEROOZ\\Desktop\\Socket\\Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\something-in-the-way-nirvana.txt"));
+        files.add(new File("C:\\Users\\BEROOZ\\Desktop\\Socket\\Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\why-you-wanna-trip-on-me-michael-jackson.txt"));
+        files.add(new File("C:\\Users\\BEROOZ\\Desktop\\Socket\\Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\you-put-a-spell-on-me-austin-giorgio.txt"));
         this.client = client;
         this.in = new DataInputStream(client.getInputStream());
         this.out = new DataOutputStream(client.getOutputStream());
@@ -97,21 +97,20 @@ public class Service implements Runnable{
         out.writeUTF("9-why-you-wanna-trip-on-me-michael-jackson\n");
         out.writeUTF("10-you-put-a-spell-on-me-austin-giorgio\n");
         String option = in.readUTF();
-        File file = files.get(Integer.parseInt(option) - 1);
-        InputStream is = null;
-        OutputStream os = null;
-        try {
-            is = new FileInputStream(file);
-            os = new FileOutputStream(new File("Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Client"));
-            byte[] buffer = new byte[1024];
-            int length = 0;
-            while ((length = is.read(buffer)) != -1) {
-                os.write(buffer, 0, length);
-                os.flush();
-            }
-        } finally {
-            is.close();
-            os.close();
+        out.writeUTF("Enter a file path");
+        String path = in.readUTF();
+        out.writeUTF("file");
+        out.writeUTF(path);
+        int index = Integer.parseInt(option) - 1;
+        File file = files.get(index);
+        FileInputStream is = new FileInputStream(file);
+        out.writeLong(file.length());
+        byte[] buffer = new byte[8192];
+        int length = 0;
+        while ((length = is.read(buffer)) != -1) {
+            out.write(buffer, 0, length);
+            out.flush();
         }
+        is.close();
     }
 }
