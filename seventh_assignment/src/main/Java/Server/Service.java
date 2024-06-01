@@ -11,16 +11,16 @@ public class Service implements Runnable{
     private ArrayList<File> files = new ArrayList<>();;
 
     Service(Socket client) throws IOException {
-        files.add(new File("C:\\Users\\BEROOZ\\Desktop\\Socket\\Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\all-of-me-john-legend.txt"));
-        files.add(new File("C:\\Users\\BEROOZ\\Desktop\\Socket\\Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\a-man-without-love-ngelbert-Hmperdinck.txt"));
-        files.add(new File("C:\\Users\\BEROOZ\\Desktop\\Socket\\Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\birds-imagine-dragons.txt"));
-        files.add(new File("C:\\Users\\BEROOZ\\Desktop\\Socket\\Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\blinding-lights-the-weekend.txt"));
-        files.add(new File("C:\\Users\\BEROOZ\\Desktop\\Socket\\Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\dont-matter-to-me-drake.txt"));
-        files.add(new File("C:\\Users\\BEROOZ\\Desktop\\Socket\\Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\feeling-in-my-body-elvis.txt"));
-        files.add(new File("C:\\Users\\BEROOZ\\Desktop\\Socket\\Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\out-of-time-the-weekend.txt"));
-        files.add(new File("C:\\Users\\BEROOZ\\Desktop\\Socket\\Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\something-in-the-way-nirvana.txt"));
-        files.add(new File("C:\\Users\\BEROOZ\\Desktop\\Socket\\Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\why-you-wanna-trip-on-me-michael-jackson.txt"));
-        files.add(new File("C:\\Users\\BEROOZ\\Desktop\\Socket\\Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\Java\\Server\\data\\you-put-a-spell-on-me-austin-giorgio.txt"));
+        files.add(new File("seventh_assignment\\src\\main\\Java\\Server\\data\\all-of-me-john-legend.txt"));
+        files.add(new File("seventh_assignment\\src\\main\\Java\\Server\\data\\a-man-without-love-ngelbert-Hmperdinck.txt"));
+        files.add(new File("seventh_assignment\\src\\main\\Java\\Server\\data\\birds-imagine-dragons.txt"));
+        files.add(new File("seventh_assignment\\src\\main\\Java\\Server\\data\\blinding-lights-the-weekend.txt"));
+        files.add(new File("seventh_assignment\\src\\main\\Java\\Server\\data\\dont-matter-to-me-drake.txt"));
+        files.add(new File("seventh_assignment\\src\\main\\Java\\Server\\data\\feeling-in-my-body-elvis.txt"));
+        files.add(new File("seventh_assignment\\src\\main\\Java\\Server\\data\\out-of-time-the-weekend.txt"));
+        files.add(new File("seventh_assignment\\src\\main\\Java\\Server\\data\\something-in-the-way-nirvana.txt"));
+        files.add(new File("seventh_assignment\\src\\main\\Java\\Server\\data\\why-you-wanna-trip-on-me-michael-jackson.txt"));
+        files.add(new File("seventh_assignment\\src\\main\\Java\\Server\\data\\you-put-a-spell-on-me-austin-giorgio.txt"));
         this.client = client;
         this.in = new DataInputStream(client.getInputStream());
         this.out = new DataOutputStream(client.getOutputStream());
